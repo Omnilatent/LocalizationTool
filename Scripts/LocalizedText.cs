@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LocalizedText : MonoBehaviour
+namespace Omnilatent.LocalizationTool
 {
-    [SerializeField] string id;
-
-    Text m_Text;
-
-    void OnEnable()
+    public class LocalizedText : MonoBehaviour
     {
-        if (m_Text == null)
-        {
-            m_Text = GetComponent<Text>();
-        }
+        [SerializeField] string id;
 
-        m_Text.text = Localizes.GetString(id);
+        Text m_Text;
+
+        void OnEnable()
+        {
+            if (m_Text == null)
+            {
+                m_Text = GetComponent<Text>();
+            }
+
+            m_Text.text = LocalizationController.GetString(id);
+        }
     }
 }

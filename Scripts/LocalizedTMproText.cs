@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class LocalizedTMproText : MonoBehaviour
+namespace Omnilatent.LocalizationTool
 {
-    [SerializeField] string id;
-    [SerializeField] bool hasParam;
-    [SerializeField] int param;
-
-    TMP_Text m_Text;
-
-    void OnEnable()
+    public class LocalizedTMproText : MonoBehaviour
     {
-        if (m_Text == null)
-        {
-            m_Text = GetComponent<TMP_Text>();
-        }
+        [SerializeField] string id;
+        [SerializeField] bool hasParam;
+        [SerializeField] int param;
 
-        //m_Text.text = (!hasParam) ? Localizes.GetString(id) : string.Format(Localizes.GetString(id), param);
-        m_Text.text = (!hasParam) ? LocalizeSQLData.GetString(id) : string.Format(LocalizeSQLData.GetString(id), param); //Use SQL
+        TMP_Text m_Text;
+
+        void OnEnable()
+        {
+            if (m_Text == null)
+            {
+                m_Text = GetComponent<TMP_Text>();
+            }
+
+            //m_Text.text = (!hasParam) ? Localizes.GetString(id) : string.Format(Localizes.GetString(id), param);
+            m_Text.text = (!hasParam) ? LocalizationController.GetString(id) : string.Format(LocalizationController.GetString(id), param); //Use SQL
+        }
     }
 }
