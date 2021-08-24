@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Omnilatent.LocalizationTool
 {
-    public class LocalizationController
+    public static class LocalizationController
     {
         public static bool enableAutoAddNotFoundEntry = false; //if true, when entry is not found (while playing in editor), it will be added to database
         public const string PREF_LANGUAGE = "PP_KEY_LANGUAGE";
@@ -23,6 +23,11 @@ namespace Omnilatent.LocalizationTool
                 }
                 return sqlDataManager;
             }
+        }
+
+        public static string Localize(this string key)
+        {
+            return GetString(key);
         }
 
         public static string GetString(string key, string language)
