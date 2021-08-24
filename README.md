@@ -1,4 +1,7 @@
 # LocalizationTool
+##Dependencies
+- SQLite4Unity3d https://github.com/robertohuertasm/SQLite4Unity3d
+
 ## Setup
 - To create default SQL database, click on Tools/Omnilatent/Localization Tool/Import Extra Package.
 
