@@ -6,8 +6,9 @@ using UnityEngine;
 
 namespace Omnilatent.LocalizationTool
 {
-    public class LocalizationController : MonoBehaviour
+    public class LocalizationController
     {
+        public static bool enableAutoAddNotFoundEntry = false; //if true, when entry is not found (while playing in editor), it will be added to database
         public const string PREF_LANGUAGE = "PP_KEY_LANGUAGE";
 
         static ILocalizeDataManager sqlDataManager;
@@ -18,36 +19,9 @@ namespace Omnilatent.LocalizationTool
                 if (sqlDataManager == null)
                 {
                     GameObject prefab = Resources.Load<GameObject>("LocalizeDataManager");
-                    sqlDataManager = Instantiate(prefab).GetComponent<ILocalizeDataManager>();
+                    sqlDataManager = Object.Instantiate(prefab).GetComponent<ILocalizeDataManager>();
                 }
                 return sqlDataManager;
-            }
-        }
-
-        static LocalizationController instance;
-        public static LocalizationController Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    GameObject prefab = Resources.Load<GameObject>("LocalizationController");
-                    instance = Instantiate(prefab).GetComponent<LocalizationController>();
-                }
-                return instance;
-            }
-        }
-
-        private void Awake()
-        {
-            if (instance == null)
-            {
-                instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else if (instance != this)
-            {
-                Destroy(gameObject);
             }
         }
 
@@ -71,17 +45,19 @@ namespace Omnilatent.LocalizationTool
             }
             else
             {
-                Debug.LogWarning($"No LocalizedData entry for [{key}] in [{language}]");
+                string msg = $"No LocalizedData entry for [{key}] in [{language}].";
 #if UNITY_EDITOR
-                if (data == null)
+                if (data == null && enableAutoAddNotFoundEntry)
                 {
                     var newData = new LocalizeData
                     {
                         key = key
                     };
                     SqlDataManager.AddLocalizeData(newData);
+                    msg += " Adding new entry to database.";
                 }
 #endif
+                Debug.LogWarning(msg);
             }
 
             if (string.IsNullOrEmpty(ret))
