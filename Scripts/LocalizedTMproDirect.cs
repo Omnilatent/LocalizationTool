@@ -8,6 +8,7 @@ namespace Omnilatent.LocalizationTool
     public class LocalizedTMproDirect : MonoBehaviour
     {
         //[SerializeField] string id;
+        [SerializeField] string stylePresetTag;
         [SerializeField] bool hasParam;
         [SerializeField] string[] paramString;
 
@@ -21,6 +22,18 @@ namespace Omnilatent.LocalizationTool
                 m_Text = GetComponent<TMP_Text>();
             }
             localizeKey = m_Text.text;
+
+            m_Text.font = LT_Setting.GetFontTMPCurrentLanguage();
+
+            if (!string.IsNullOrEmpty(stylePresetTag))
+            {
+                TextStylePreset stylePreset = LT_Setting.GetStylePresetTMPCurrentLanguage(stylePresetTag);
+                if (stylePreset != null)
+                {
+                    m_Text.fontSharedMaterial = stylePreset.fontMaterial;
+                }
+            }
+
             UpdateText();
         }
 
