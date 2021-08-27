@@ -63,8 +63,6 @@ namespace Omnilatent.LocalizationTool
                     fontAsset = Instance.japaneseFont;
                     break;
             }
-            if (fontAsset == null)
-                fontAsset = TMP_Settings.defaultFontAsset;
             return fontAsset;
         }
 

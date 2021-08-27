@@ -23,14 +23,18 @@ namespace Omnilatent.LocalizationTool
             }
             localizeKey = m_Text.text;
 
-            m_Text.font = LT_Setting.GetFontTMPCurrentLanguage();
-
-            if (!string.IsNullOrEmpty(stylePresetTag))
+            var adaptiveFont = LT_Setting.GetFontTMPCurrentLanguage();
+            if (adaptiveFont != null)
             {
-                TextStylePreset stylePreset = LT_Setting.GetStylePresetTMPCurrentLanguage(stylePresetTag);
-                if (stylePreset != null)
+                m_Text.font = adaptiveFont;
+
+                if (!string.IsNullOrEmpty(stylePresetTag))
                 {
-                    m_Text.fontSharedMaterial = stylePreset.fontMaterial;
+                    TextStylePreset stylePreset = LT_Setting.GetStylePresetTMPCurrentLanguage(stylePresetTag);
+                    if (stylePreset != null)
+                    {
+                        m_Text.fontSharedMaterial = stylePreset.fontMaterial;
+                    }
                 }
             }
 
