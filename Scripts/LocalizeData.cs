@@ -43,53 +43,54 @@ namespace Omnilatent.LocalizationTool
 
         public string GetString(string language)
         {
-            string ret = null;
+            string result = null;
             switch (language)
             {
                 case SupportedLanguage.vietnamese:
-                    ret = vietnamese?.Replace("\\n", "\n");
+                    result = vietnamese;
                     break;
                 case SupportedLanguage.english:
-                    ret = english?.Replace("\\n", "\n");
+                    result = english;
                     break;
                 case SupportedLanguage.japanese:
-                    ret = japanese?.Replace("\\n", "\n");
+                    result = japanese;
                     break;
                 case SupportedLanguage.korean:
-                    ret = korean?.Replace("\\n", "\n");
+                    result = korean;
                     break;
                 case SupportedLanguage.hebrew:
-                    ret = hebrew?.Replace("\\n", "\n");
+                    result = hebrew;
                     break;
                 case SupportedLanguage.arabic:
-                    ret = arabic?.Replace("\\n", "\n");
+                    result = arabic;
                     break;
                 case SupportedLanguage.french:
-                    ret = french?.Replace("\\n", "\n");
+                    result = french;
                     break;
                 case SupportedLanguage.german:
-                    ret = german?.Replace("\\n", "\n");
+                    result = german;
                     break;
                 case SupportedLanguage.portuguese:
-                    ret = portuguese?.Replace("\\n", "\n");
+                    result = portuguese;
                     break;
                 case SupportedLanguage.spanish:
-                    ret = spanish?.Replace("\\n", "\n");
+                    result = spanish;
                     break;
                 case SupportedLanguage.turkish:
-                    ret = turkish?.Replace("\\n", "\n");
+                    result = turkish;
                     break;
                 case SupportedLanguage.chinese_traditional:
-                    ret = chinese_traditional?.Replace("\\n", "\n");
+                    result = chinese_traditional;
                     break;
                 case SupportedLanguage.chinese_simplified:
-                    ret = chinese_simplified?.Replace("\\n", "\n");
+                    result = chinese_simplified;
                     break;
                 case SupportedLanguage.indonesian:
-                    ret = indonesian?.Replace("\\n", "\n");
+                    result = indonesian;
                     break;
             }
-            return ret;
+            result = result?.Replace("\\n", "\n");
+            return result;
         }
     }
 
