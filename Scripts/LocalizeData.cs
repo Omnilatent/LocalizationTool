@@ -18,6 +18,9 @@ namespace Omnilatent.LocalizationTool
         public const string portuguese = "Portuguese";
         public const string spanish = "Spanish";
         public const string turkish = "Turkish";
+        public const string chinese_traditional = "Chinese_Traditional";
+        public const string chinese_simplified = "Chinese_Simplified";
+        public const string indonesian = "Indonesian";
     }
 
     public class LocalizeData
@@ -34,6 +37,9 @@ namespace Omnilatent.LocalizationTool
         public string portuguese { get; set; }
         public string spanish { get; set; }
         public string turkish { get; set; }
+        public string chinese_traditional { get; set; }
+        public string chinese_simplified { get; set; }
+        public string indonesian { get; set; }
 
         public string GetString(string language)
         {
@@ -73,11 +79,21 @@ namespace Omnilatent.LocalizationTool
                 case SupportedLanguage.turkish:
                     ret = turkish?.Replace("\\n", "\n");
                     break;
+                case SupportedLanguage.chinese_traditional:
+                    ret = chinese_traditional?.Replace("\\n", "\n");
+                    break;
+                case SupportedLanguage.chinese_simplified:
+                    ret = chinese_simplified?.Replace("\\n", "\n");
+                    break;
+                case SupportedLanguage.indonesian:
+                    ret = indonesian?.Replace("\\n", "\n");
+                    break;
             }
             return ret;
         }
     }
 
+    [System.Obsolete("Use SQLDataManager instead")]
     public class LocalizesJsonDataManager
     {
         static LocalizeData[] datas;
