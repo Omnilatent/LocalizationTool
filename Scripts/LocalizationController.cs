@@ -130,6 +130,15 @@ namespace Omnilatent.LocalizationTool
                     case SystemLanguage.Turkish:
                         language = SupportedLanguage.turkish;
                         break;
+                    case SystemLanguage.ChineseSimplified:
+                        language = SupportedLanguage.chinese_simplified;
+                        break;
+                    case SystemLanguage.ChineseTraditional:
+                        language = SupportedLanguage.chinese_traditional;
+                        break;
+                    case SystemLanguage.Indonesian:
+                        language = SupportedLanguage.indonesian;
+                        break;
                     default:
                         language = SupportedLanguage.english;
                         break;
