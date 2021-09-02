@@ -45,8 +45,10 @@ namespace Omnilatent.LocalizationTool
             else if (instance != this)
             {
                 Destroy(gameObject);
+                return;
             }
             DontDestroyOnLoad(gameObject);
+            InitService();
         }
 
         public static DataService GetDataServiceInEditMode()
@@ -68,12 +70,27 @@ namespace Omnilatent.LocalizationTool
 
         public LocalizeData GetLocalizeData(string key)
         {
-            return ServiceSQLConnection.Table<LocalizeData>().Where(x => x.key == key).FirstOrDefault();
+            if (ServiceSQLConnection == null)
+            {
+                Debug.LogError("ServiceSQLConnection is not ready yet.");
+                return null;
+            }
+            else
+            {
+                return ServiceSQLConnection.Table<LocalizeData>().Where(x => x.key == key).FirstOrDefault();
+            }
         }
 
         public void AddLocalizeData(LocalizeData newData)
         {
-            ServiceSQLConnection.Insert(newData);
+            if (ServiceSQLConnection == null)
+            {
+                Debug.LogError("ServiceSQLConnection is not ready yet.");
+            }
+            else
+            {
+                ServiceSQLConnection.Insert(newData);
+            }
         }
     }
 

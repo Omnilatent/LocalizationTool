@@ -18,8 +18,16 @@ namespace Omnilatent.LocalizationTool
             {
                 if (sqlDataManager == null)
                 {
-                    GameObject prefab = Resources.Load<GameObject>("LocalizeDataManager");
-                    sqlDataManager = Object.Instantiate(prefab).GetComponent<ILocalizeDataManager>();
+                    if (SQLDataManager.Instance != null)
+                    {
+                        sqlDataManager = SQLDataManager.Instance;
+                    }
+                    else
+                    {
+                        //Warning: localize database initialization is an async function, database may not be ready and return null before initialization is complete
+                        GameObject prefab = Resources.Load<GameObject>("LocalizeDataManager");
+                        sqlDataManager = Object.Instantiate(prefab).GetComponent<ILocalizeDataManager>();
+                    }
                 }
                 return sqlDataManager;
             }
