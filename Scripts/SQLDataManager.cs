@@ -97,7 +97,7 @@ namespace Omnilatent.LocalizationTool
     public partial class DataService
     {
         private SQLiteConnection _connection;
-        public const string PREF_EXIST_DATABASE_VERSION_CODE = "GameDatabaseVersion";
+        public const string PREF_EXIST_DATABASE_VERSION_CODE = "LocalizationToolDatabaseVersion";
 
         public SQLiteConnection Connection { get => _connection; }
 
@@ -110,7 +110,7 @@ namespace Omnilatent.LocalizationTool
         {
             string currentDatabaseVersion = PlayerPrefs.GetString(PREF_EXIST_DATABASE_VERSION_CODE, "");
             bool requireUpdateDatabase = !currentDatabaseVersion.Equals(Application.version);
-            Debug.Log($"database:{currentDatabaseVersion} app:{Application.version} update:{requireUpdateDatabase}");
+            Debug.Log($"Localize database:{currentDatabaseVersion} app:{Application.version} update:{requireUpdateDatabase}");
 #if UNITY_EDITOR
             var dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
             string filePath = Path.Combine(Application.streamingAssetsPath, DatabaseName);
