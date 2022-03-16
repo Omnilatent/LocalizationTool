@@ -9,37 +9,45 @@ namespace Omnilatent.LocalizationTool
     {
         public const string english = "English";
         public const string vietnamese = "Vietnamese";
-        public const string japanese = "Japanese";
-        public const string korean = "Korean";
-        public const string hebrew = "Hebrew";
         public const string arabic = "Arabic";
+        public const string chinese_simplified = "Chinese_Simplified";
+        public const string chinese_traditional = "Chinese_Traditional";
         public const string french = "French";
         public const string german = "German";
-        public const string portuguese = "Portuguese";
-        public const string spanish = "Spanish";
-        public const string turkish = "Turkish";
-        public const string chinese_traditional = "Chinese_Traditional";
-        public const string chinese_simplified = "Chinese_Simplified";
+        public const string hebrew = "Hebrew";
         public const string indonesian = "Indonesian";
+        public const string italian = "Italian";
+        public const string japanese = "Japanese";
+        public const string korean = "Korean";
+        public const string malay = "Malay";
+        public const string portuguese = "Portuguese";
+        public const string russian = "Russian";
+        public const string spanish = "Spanish";
+        public const string thai = "Thai";
+        public const string turkish = "Turkish";
     }
 
     public class LocalizeData
     {
         public string key { get; set; }
-        public string vietnamese { get; set; }
         public string english { get; set; }
-        public string japanese { get; set; }
-        public string korean { get; set; }
-        public string hebrew { get; set; }
+        public string vietnamese { get; set; }
         public string arabic { get; set; }
+        public string chinese_simplified { get; set; }
+        public string chinese_traditional { get; set; }
         public string french { get; set; }
         public string german { get; set; }
-        public string portuguese { get; set; }
-        public string spanish { get; set; }
-        public string turkish { get; set; }
-        public string chinese_traditional { get; set; }
-        public string chinese_simplified { get; set; }
+        public string hebrew { get; set; }
         public string indonesian { get; set; }
+        public string italian { get; set; }
+        public string japanese { get; set; }
+        public string korean { get; set; }
+        public string malay { get; set; }
+        public string portuguese { get; set; }
+        public string russian { get; set; }
+        public string spanish { get; set; }
+        public string thai { get; set; }
+        public string turkish { get; set; }
 
         public string GetString(string language)
         {
