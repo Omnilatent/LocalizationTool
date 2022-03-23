@@ -54,23 +54,20 @@ namespace Omnilatent.LocalizationTool
             string result = null;
             switch (language)
             {
-                case SupportedLanguage.vietnamese:
-                    result = vietnamese;
-                    break;
                 case SupportedLanguage.english:
                     result = english;
                     break;
-                case SupportedLanguage.japanese:
-                    result = japanese;
-                    break;
-                case SupportedLanguage.korean:
-                    result = korean;
-                    break;
-                case SupportedLanguage.hebrew:
-                    result = hebrew;
+                case SupportedLanguage.vietnamese:
+                    result = vietnamese;
                     break;
                 case SupportedLanguage.arabic:
                     result = arabic;
+                    break;
+                case SupportedLanguage.chinese_simplified:
+                    result = chinese_simplified;
+                    break;
+                case SupportedLanguage.chinese_traditional:
+                    result = chinese_traditional;
                     break;
                 case SupportedLanguage.french:
                     result = french;
@@ -78,23 +75,38 @@ namespace Omnilatent.LocalizationTool
                 case SupportedLanguage.german:
                     result = german;
                     break;
+                case SupportedLanguage.hebrew:
+                    result = hebrew;
+                    break;
+                case SupportedLanguage.indonesian:
+                    result = indonesian;
+                    break;
+                case SupportedLanguage.italian:
+                    result = italian;
+                    break;
+                case SupportedLanguage.japanese:
+                    result = japanese;
+                    break;
+                case SupportedLanguage.korean:
+                    result = korean;
+                    break;
+                case SupportedLanguage.malay:
+                    result = malay;
+                    break;
                 case SupportedLanguage.portuguese:
                     result = portuguese;
+                    break;
+                case SupportedLanguage.russian:
+                    result = russian;
                     break;
                 case SupportedLanguage.spanish:
                     result = spanish;
                     break;
+                case SupportedLanguage.thai:
+                    result = thai;
+                    break;
                 case SupportedLanguage.turkish:
                     result = turkish;
-                    break;
-                case SupportedLanguage.chinese_traditional:
-                    result = chinese_traditional;
-                    break;
-                case SupportedLanguage.chinese_simplified:
-                    result = chinese_simplified;
-                    break;
-                case SupportedLanguage.indonesian:
-                    result = indonesian;
                     break;
             }
             result = result?.Replace("\\n", "\n");
