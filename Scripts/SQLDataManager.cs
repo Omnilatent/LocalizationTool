@@ -139,9 +139,9 @@ namespace Omnilatent.LocalizationTool
                    // then save to Application.persistentDataPath
                 File.WriteAllBytes(filepath, loadDb.bytes);
 #elif UNITY_IOS
-                 var loadDb = Application.dataPath + "/Raw/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
+                var loadDb = Application.dataPath + "/Raw/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
                 // then save to Application.persistentDataPath
-                File.Copy(loadDb, filepath);
+                File.Copy(loadDb, filepath, true);
 #elif UNITY_WP8
                 var loadDb = Application.dataPath + "/StreamingAssets/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
                 // then save to Application.persistentDataPath
