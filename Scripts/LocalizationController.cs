@@ -49,7 +49,7 @@ namespace Omnilatent.LocalizationTool
                 if (string.IsNullOrEmpty(ret))
                 {
                     Debug.LogWarning($"No LocalizedData entry for [{key}] in [{language}]");
-                    ret = data.GetString(SupportedLanguage.english);
+                    ret = data.GetString(SupportedLanguage.English);
                     if (string.IsNullOrEmpty(ret))
                     {
                         ret = key;
@@ -101,46 +101,46 @@ namespace Omnilatent.LocalizationTool
                 switch (Application.systemLanguage)
                 {
                     case SystemLanguage.Japanese:
-                        language = SupportedLanguage.japanese;
+                        language = SupportedLanguage.Japanese;
                         break;
                     case SystemLanguage.Vietnamese:
-                        language = SupportedLanguage.vietnamese;
+                        language = SupportedLanguage.Vietnamese;
                         break;
                     case SystemLanguage.Korean:
-                        language = SupportedLanguage.korean;
+                        language = SupportedLanguage.Korean;
                         break;
                     case SystemLanguage.Hebrew:
-                        language = SupportedLanguage.hebrew;
+                        language = SupportedLanguage.Hebrew;
                         break;
                     case SystemLanguage.Arabic:
-                        language = SupportedLanguage.arabic;
+                        language = SupportedLanguage.Arabic;
                         break;
                     case SystemLanguage.French:
-                        language = SupportedLanguage.french;
+                        language = SupportedLanguage.French;
                         break;
                     case SystemLanguage.German:
-                        language = SupportedLanguage.german;
+                        language = SupportedLanguage.German;
                         break;
                     case SystemLanguage.Portuguese:
-                        language = SupportedLanguage.portuguese;
+                        language = SupportedLanguage.Portuguese;
                         break;
                     case SystemLanguage.Spanish:
-                        language = SupportedLanguage.spanish;
+                        language = SupportedLanguage.Spanish;
                         break;
                     case SystemLanguage.Turkish:
-                        language = SupportedLanguage.turkish;
+                        language = SupportedLanguage.Turkish;
                         break;
                     case SystemLanguage.ChineseSimplified:
-                        language = SupportedLanguage.chinese_simplified;
+                        language = SupportedLanguage.ChineseSimplified;
                         break;
                     case SystemLanguage.ChineseTraditional:
-                        language = SupportedLanguage.chinese_traditional;
+                        language = SupportedLanguage.ChineseTraditional;
                         break;
                     case SystemLanguage.Indonesian:
-                        language = SupportedLanguage.indonesian;
+                        language = SupportedLanguage.Indonesian;
                         break;
                     default:
-                        language = SupportedLanguage.english;
+                        language = SupportedLanguage.English;
                         break;
                 }
                 //SetLanguage(language);

@@ -7,24 +7,24 @@ namespace Omnilatent.LocalizationTool
 {
     public class SupportedLanguage
     {
-        public const string english = "English";
-        public const string vietnamese = "Vietnamese";
-        public const string arabic = "Arabic";
-        public const string chinese_simplified = "Chinese_Simplified";
-        public const string chinese_traditional = "Chinese_Traditional";
-        public const string french = "French";
-        public const string german = "German";
-        public const string hebrew = "Hebrew";
-        public const string indonesian = "Indonesian";
-        public const string italian = "Italian";
-        public const string japanese = "Japanese";
-        public const string korean = "Korean";
-        public const string malay = "Malay";
-        public const string portuguese = "Portuguese";
-        public const string russian = "Russian";
-        public const string spanish = "Spanish";
-        public const string thai = "Thai";
-        public const string turkish = "Turkish";
+        public const string English = "English";
+        public const string Vietnamese = "Vietnamese";
+        public const string Arabic = "Arabic";
+        public const string ChineseSimplified = "Chinese_Simplified";
+        public const string ChineseTraditional = "Chinese_Traditional";
+        public const string French = "French";
+        public const string German = "German";
+        public const string Hebrew = "Hebrew";
+        public const string Indonesian = "Indonesian";
+        public const string Italian = "Italian";
+        public const string Japanese = "Japanese";
+        public const string Korean = "Korean";
+        public const string Malay = "Malay";
+        public const string Portuguese = "Portuguese";
+        public const string Russian = "Russian";
+        public const string Spanish = "Spanish";
+        public const string Thai = "Thai";
+        public const string Turkish = "Turkish";
     }
 
     public class LocalizeData
@@ -54,58 +54,58 @@ namespace Omnilatent.LocalizationTool
             string result = null;
             switch (language)
             {
-                case SupportedLanguage.english:
+                case SupportedLanguage.English:
                     result = english;
                     break;
-                case SupportedLanguage.vietnamese:
+                case SupportedLanguage.Vietnamese:
                     result = vietnamese;
                     break;
-                case SupportedLanguage.arabic:
+                case SupportedLanguage.Arabic:
                     result = arabic;
                     break;
-                case SupportedLanguage.chinese_simplified:
+                case SupportedLanguage.ChineseSimplified:
                     result = chinese_simplified;
                     break;
-                case SupportedLanguage.chinese_traditional:
+                case SupportedLanguage.ChineseTraditional:
                     result = chinese_traditional;
                     break;
-                case SupportedLanguage.french:
+                case SupportedLanguage.French:
                     result = french;
                     break;
-                case SupportedLanguage.german:
+                case SupportedLanguage.German:
                     result = german;
                     break;
-                case SupportedLanguage.hebrew:
+                case SupportedLanguage.Hebrew:
                     result = hebrew;
                     break;
-                case SupportedLanguage.indonesian:
+                case SupportedLanguage.Indonesian:
                     result = indonesian;
                     break;
-                case SupportedLanguage.italian:
+                case SupportedLanguage.Italian:
                     result = italian;
                     break;
-                case SupportedLanguage.japanese:
+                case SupportedLanguage.Japanese:
                     result = japanese;
                     break;
-                case SupportedLanguage.korean:
+                case SupportedLanguage.Korean:
                     result = korean;
                     break;
-                case SupportedLanguage.malay:
+                case SupportedLanguage.Malay:
                     result = malay;
                     break;
-                case SupportedLanguage.portuguese:
+                case SupportedLanguage.Portuguese:
                     result = portuguese;
                     break;
-                case SupportedLanguage.russian:
+                case SupportedLanguage.Russian:
                     result = russian;
                     break;
-                case SupportedLanguage.spanish:
+                case SupportedLanguage.Spanish:
                     result = spanish;
                     break;
-                case SupportedLanguage.thai:
+                case SupportedLanguage.Thai:
                     result = thai;
                     break;
-                case SupportedLanguage.turkish:
+                case SupportedLanguage.Turkish:
                     result = turkish;
                     break;
             }
@@ -133,19 +133,19 @@ namespace Omnilatent.LocalizationTool
                 {
                     switch (language)
                     {
-                        case SupportedLanguage.vietnamese:
+                        case SupportedLanguage.Vietnamese:
                             ret = datas[i].vietnamese.Replace("\\n", "\n");
                             break;
-                        case SupportedLanguage.english:
+                        case SupportedLanguage.English:
                             ret = datas[i].english.Replace("\\n", "\n");
                             break;
-                        case SupportedLanguage.japanese:
+                        case SupportedLanguage.Japanese:
                             ret = datas[i].japanese.Replace("\\n", "\n");
                             break;
-                        case SupportedLanguage.korean:
+                        case SupportedLanguage.Korean:
                             ret = datas[i].korean.Replace("\\n", "\n");
                             break;
-                        case SupportedLanguage.hebrew:
+                        case SupportedLanguage.Hebrew:
                             ret = datas[i].hebrew.Replace("\\n", "\n");
                             break;
                     }

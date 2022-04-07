@@ -19,19 +19,19 @@ namespace Omnilatent.LocalizationTool
             GameObject objectToShow = defaultObject;
             switch (language)
             {
-                case SupportedLanguage.vietnamese:
+                case SupportedLanguage.Vietnamese:
                     objectToShow = vietnameseObject;
                     break;
-                case SupportedLanguage.chinese_simplified:
+                case SupportedLanguage.ChineseSimplified:
                     objectToShow = chineseSimplifiedObject;
                     break;
-                case SupportedLanguage.chinese_traditional:
+                case SupportedLanguage.ChineseTraditional:
                     objectToShow = chineseTraditionalObject;
                     break;
-                case SupportedLanguage.korean:
+                case SupportedLanguage.Korean:
                     objectToShow = koreanObject;
                     break;
-                case SupportedLanguage.japanese:
+                case SupportedLanguage.Japanese:
                     objectToShow = japaneseObject;
                     break;
             }

@@ -23,11 +23,11 @@ namespace Omnilatent.LocalizationTool
 
             switch (language)
             {
-                case SupportedLanguage.vietnamese:
+                case SupportedLanguage.Vietnamese:
                     m_Image.sprite = m_VietnameseSprite;
                     break;
 
-                case SupportedLanguage.english:
+                case SupportedLanguage.English:
                     m_Image.sprite = m_EnglishSprite;
                     break;
             }

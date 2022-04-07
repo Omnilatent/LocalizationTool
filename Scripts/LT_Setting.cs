@@ -47,19 +47,19 @@ namespace Omnilatent.LocalizationTool
             TMP_FontAsset fontAsset = null;
             switch (language)
             {
-                case SupportedLanguage.vietnamese:
+                case SupportedLanguage.Vietnamese:
                     fontAsset = Instance.vietnameseFont;
                     break;
-                case SupportedLanguage.chinese_simplified:
+                case SupportedLanguage.ChineseSimplified:
                     fontAsset = Instance.chineseSimplifiedFont;
                     break;
-                case SupportedLanguage.chinese_traditional:
+                case SupportedLanguage.ChineseTraditional:
                     fontAsset = Instance.chineseTraditionalFont;
                     break;
-                case SupportedLanguage.korean:
+                case SupportedLanguage.Korean:
                     fontAsset = Instance.koreanFont;
                     break;
-                case SupportedLanguage.japanese:
+                case SupportedLanguage.Japanese:
                     fontAsset = Instance.japaneseFont;
                     break;
             }
