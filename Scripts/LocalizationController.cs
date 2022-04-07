@@ -100,35 +100,14 @@ namespace Omnilatent.LocalizationTool
             {
                 switch (Application.systemLanguage)
                 {
-                    case SystemLanguage.Japanese:
-                        language = SupportedLanguage.japanese;
+                    default:
+                        language = SupportedLanguage.english;
                         break;
                     case SystemLanguage.Vietnamese:
                         language = SupportedLanguage.vietnamese;
                         break;
-                    case SystemLanguage.Korean:
-                        language = SupportedLanguage.korean;
-                        break;
-                    case SystemLanguage.Hebrew:
-                        language = SupportedLanguage.hebrew;
-                        break;
                     case SystemLanguage.Arabic:
                         language = SupportedLanguage.arabic;
-                        break;
-                    case SystemLanguage.French:
-                        language = SupportedLanguage.french;
-                        break;
-                    case SystemLanguage.German:
-                        language = SupportedLanguage.german;
-                        break;
-                    case SystemLanguage.Portuguese:
-                        language = SupportedLanguage.portuguese;
-                        break;
-                    case SystemLanguage.Spanish:
-                        language = SupportedLanguage.spanish;
-                        break;
-                    case SystemLanguage.Turkish:
-                        language = SupportedLanguage.turkish;
                         break;
                     case SystemLanguage.ChineseSimplified:
                         language = SupportedLanguage.chinese_simplified;
@@ -136,11 +115,41 @@ namespace Omnilatent.LocalizationTool
                     case SystemLanguage.ChineseTraditional:
                         language = SupportedLanguage.chinese_traditional;
                         break;
+                    case SystemLanguage.French:
+                        language = SupportedLanguage.french;
+                        break;
+                    case SystemLanguage.German:
+                        language = SupportedLanguage.german;
+                        break;
+                    case SystemLanguage.Hebrew:
+                        language = SupportedLanguage.hebrew;
+                        break;
+                    case SystemLanguage.Japanese:
+                        language = SupportedLanguage.japanese;
+                        break;
                     case SystemLanguage.Indonesian:
                         language = SupportedLanguage.indonesian;
                         break;
-                    default:
-                        language = SupportedLanguage.english;
+                    case SystemLanguage.Italian:
+                        language = SupportedLanguage.italian;
+                        break;
+                    case SystemLanguage.Korean:
+                        language = SupportedLanguage.korean;
+                        break;
+                    case SystemLanguage.Portuguese:
+                        language = SupportedLanguage.portuguese;
+                        break;
+                    case SystemLanguage.Russian:
+                        language = SupportedLanguage.russian;
+                        break;
+                    case SystemLanguage.Spanish:
+                        language = SupportedLanguage.spanish;
+                        break;
+                    case SystemLanguage.Thai:
+                        language = SupportedLanguage.thai;
+                        break;
+                    case SystemLanguage.Turkish:
+                        language = SupportedLanguage.turkish;
                         break;
                 }
                 //SetLanguage(language);
