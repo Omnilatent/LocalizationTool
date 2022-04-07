@@ -148,5 +148,47 @@ namespace Omnilatent.LocalizationTool
 
             return language;
         }
+
+        public static string GetString(string key, SystemLanguage language)
+        {
+            string ret = string.Empty;
+            LocalizeData data = SqlDataManager.GetLocalizeData(key); //GameDatabase.ServiceSQLConnection.Table<LocalizedData>().Where(x => x.key == key).FirstOrDefault();
+
+            if (data != null)
+            {
+                ret = data.GetString(language);
+                if (string.IsNullOrEmpty(ret))
+                {
+                    Debug.LogWarning($"No LocalizedData entry for [{key}] in [{language}]");
+                    ret = data.GetString(SupportedLanguage.english);
+                    if (string.IsNullOrEmpty(ret))
+                    {
+                        ret = key;
+                    }
+                }
+            }
+            else
+            {
+                string msg = $"No LocalizedData entry for [{key}] in [{language}].";
+#if UNITY_EDITOR
+                if (data == null && enableAutoAddNotFoundEntry)
+                {
+                    var newData = new LocalizeData
+                    {
+                        key = key
+                    };
+                    SqlDataManager.AddLocalizeData(newData);
+                    msg += " Adding new entry to database.";
+                }
+#endif
+                Debug.LogWarning(msg);
+            }
+
+            if (string.IsNullOrEmpty(ret))
+            {
+                return key;
+            }
+            return ret;
+        }
     }
 }

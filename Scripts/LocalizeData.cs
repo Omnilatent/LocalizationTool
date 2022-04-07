@@ -112,6 +112,70 @@ namespace Omnilatent.LocalizationTool
             result = result?.Replace("\\n", "\n");
             return result;
         }
+
+        public string GetString(SystemLanguage language)
+        {
+            string result = null;
+            switch (language)
+            {
+                case SystemLanguage.English:
+                    result = english;
+                    break;
+                case SystemLanguage.Vietnamese:
+                    result = vietnamese;
+                    break;
+                case SystemLanguage.Arabic:
+                    result = arabic;
+                    break;
+                case SystemLanguage.ChineseSimplified:
+                    result = chinese_simplified;
+                    break;
+                case SystemLanguage.ChineseTraditional:
+                    result = chinese_traditional;
+                    break;
+                case SystemLanguage.French:
+                    result = french;
+                    break;
+                case SystemLanguage.German:
+                    result = german;
+                    break;
+                case SystemLanguage.Hebrew:
+                    result = hebrew;
+                    break;
+                case SystemLanguage.Indonesian:
+                    result = indonesian;
+                    break;
+                case SystemLanguage.Italian:
+                    result = italian;
+                    break;
+                case SystemLanguage.Japanese:
+                    result = japanese;
+                    break;
+                case SystemLanguage.Korean:
+                    result = korean;
+                    break;
+                case SystemLanguage.Mala:
+                    result = malay;
+                    break;
+                case SystemLanguage.Portuguese:
+                    result = portuguese;
+                    break;
+                case SystemLanguage.russian:
+                    result = russian;
+                    break;
+                case SystemLanguage.spanish:
+                    result = spanish;
+                    break;
+                case SystemLanguage.thai:
+                    result = thai;
+                    break;
+                case SystemLanguage.turkish:
+                    result = turkish;
+                    break;
+            }
+            result = result?.Replace("\\n", "\n");
+            return result;
+        }
     }
 
     [System.Obsolete("Use SQLDataManager instead")]
