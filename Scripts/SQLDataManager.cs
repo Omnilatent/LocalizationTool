@@ -119,6 +119,7 @@ namespace Omnilatent.LocalizationTool
                 Debug.LogError($"Please create default database first by Tools/Omnilatent/Localization Tool/Import Extra Package. \n\nDatabase 'localize.db' does not exist in {filePath}.");
                 return;
             }
+            await Task.Delay(0); //add this to skip unity warning
 #else
             // check if file exists in Application.persistentDataPath
             var filepath = string.Format("{0}/{1}", Application.persistentDataPath, DatabaseName);
