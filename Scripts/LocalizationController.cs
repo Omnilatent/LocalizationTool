@@ -157,5 +157,19 @@ namespace Omnilatent.LocalizationTool
 
             return language;
         }
+
+        public static TMPro.TMP_Text SetCustomFont(this TMPro.TMP_Text tmp)
+        {
+            var currentFont = tmp.font;
+            var mat = tmp.fontMaterial;
+            var adaptiveFont = LT_Setting.GetFontTMPCurrentLanguage();
+            if (adaptiveFont != null) tmp.font = adaptiveFont;
+            var newMat = LT_Setting.GetCorrespondingMaterial(currentFont, adaptiveFont, mat);
+            if (newMat != null)
+            {
+                tmp.fontMaterial = newMat;
+            }
+            return tmp;
+        }
     }
 }

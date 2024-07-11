@@ -2,9 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 namespace Omnilatent.LocalizationTool
 {
+    [System.Serializable]
+    public class LT_FontData
+    {
+        public string language;
+        public TMP_FontAsset fontAsset;
+        public List<Material> materials = new();
+    }
+
     [CreateAssetMenu(fileName = "LocalizationTool Settings", menuName = "Omnilatent/LocalizationTool Settings")]
     public class LT_Setting : ScriptableObject
     {
@@ -34,36 +43,53 @@ namespace Omnilatent.LocalizationTool
                 return LT_Setting.s_Instance;
             }
         }
+        // [SerializeField] TMP_FontAsset vietnameseFont;
+        // [SerializeField] TMP_FontAsset chineseSimplifiedFont;
+        // [SerializeField] TMP_FontAsset chineseTraditionalFont;
+        // [SerializeField] TMP_FontAsset koreanFont;
+        // [SerializeField] TMP_FontAsset japaneseFont;
 
-        [SerializeField] TMP_FontAsset vietnameseFont;
-        [SerializeField] TMP_FontAsset chineseSimplifiedFont;
-        [SerializeField] TMP_FontAsset chineseTraditionalFont;
-        [SerializeField] TMP_FontAsset koreanFont;
-        [SerializeField] TMP_FontAsset japaneseFont;
+        public List<LT_FontData> fontDatas = new();
+        public bool usingCustomFont = false;
 
         public static TMP_FontAsset GetFontTMPCurrentLanguage()
         {
             string language = LocalizationController.CurrentLanguage();
             TMP_FontAsset fontAsset = null;
-            switch (language)
-            {
-                case SupportedLanguage.vietnamese:
-                    fontAsset = Instance.vietnameseFont;
-                    break;
-                case SupportedLanguage.chinese_simplified:
-                    fontAsset = Instance.chineseSimplifiedFont;
-                    break;
-                case SupportedLanguage.chinese_traditional:
-                    fontAsset = Instance.chineseTraditionalFont;
-                    break;
-                case SupportedLanguage.korean:
-                    fontAsset = Instance.koreanFont;
-                    break;
-                case SupportedLanguage.japanese:
-                    fontAsset = Instance.japaneseFont;
-                    break;
-            }
+            // switch (language)
+            // {
+            //     case SupportedLanguage.vietnamese:
+            //         fontAsset = Instance.vietnameseFont;
+            //         break;
+            //     case SupportedLanguage.chinese_simplified:
+            //         fontAsset = Instance.chineseSimplifiedFont;
+            //         break;
+            //     case SupportedLanguage.chinese_traditional:
+            //         fontAsset = Instance.chineseTraditionalFont;
+            //         break;
+            //     case SupportedLanguage.korean:
+            //         fontAsset = Instance.koreanFont;
+            //         break;
+            //     case SupportedLanguage.japanese:
+            //         fontAsset = Instance.japaneseFont;
+            //         break;
+            // }
+            var data = Instance.fontDatas.FirstOrDefault(x => x.language == language);
+            if (data != null) fontAsset = data.fontAsset;
             return fontAsset;
+        }
+
+        public static Material GetCorrespondingMaterial(TMP_FontAsset currentFont, TMP_FontAsset targetFont, Material material)
+        {
+            var data = Instance.fontDatas.FirstOrDefault(x => x.fontAsset == currentFont);
+            var target = Instance.fontDatas.FirstOrDefault(x => x.fontAsset == targetFont);
+            if (data != null && target != null)
+            {
+                var mat = data.materials.FirstOrDefault(x => material.name.Contains(x.name));
+                int id = data.materials.IndexOf(mat);
+                return target.materials[id];
+            }
+            return null;
         }
 
         [SerializeField] List<TextStylePreset> stylePresets;
