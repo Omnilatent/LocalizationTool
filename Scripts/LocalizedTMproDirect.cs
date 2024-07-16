@@ -22,6 +22,7 @@ namespace Omnilatent.LocalizationTool
                 m_Text = GetComponent<TMP_Text>();
             }
             localizeKey = m_Text.text;
+            m_Text.SetCustomFont();
 
             var adaptiveFont = LT_Setting.GetFontTMPCurrentLanguage();
             if (adaptiveFont != null)

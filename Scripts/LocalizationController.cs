@@ -169,6 +169,16 @@ namespace Omnilatent.LocalizationTool
             {
                 tmp.fontMaterial = newMat;
             }
+            var subMesheUI = tmp.GetComponentsInChildren<TMPro.TMP_SubMeshUI>();
+            foreach (var item in subMesheUI)
+            {
+                item.material = newMat;
+            }
+            var subMeshes = tmp.GetComponentsInChildren<TMPro.TMP_SubMesh>();
+            foreach (var item in subMeshes)
+            {
+                item.material = newMat;
+            }
             return tmp;
         }
     }
