@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 
@@ -8,10 +9,14 @@ namespace Omnilatent.LocalizationTool
 {
     public static class LocalizationController
     {
-        public static bool enableAutoAddNotFoundEntry = false; //if true, when entry is not found (while playing in editor), it will be added to database
+        public static bool
+            enableAutoAddNotFoundEntry =
+                false; //if true, when entry is not found (while playing in editor), it will be added to database
+
         public const string PREF_LANGUAGE = "PP_KEY_LANGUAGE";
 
         static ILocalizeDataManager sqlDataManager;
+
         public static ILocalizeDataManager SqlDataManager
         {
             get
@@ -29,6 +34,7 @@ namespace Omnilatent.LocalizationTool
                         sqlDataManager = Object.Instantiate(prefab).GetComponent<ILocalizeDataManager>();
                     }
                 }
+
                 return sqlDataManager;
             }
         }
@@ -41,7 +47,10 @@ namespace Omnilatent.LocalizationTool
         public static string GetString(string key, string language)
         {
             string ret = string.Empty;
-            LocalizeData data = SqlDataManager.GetLocalizeData(key); //GameDatabase.ServiceSQLConnection.Table<LocalizedData>().Where(x => x.key == key).FirstOrDefault();
+            LocalizeData
+                data = SqlDataManager
+                    .GetLocalizeData(
+                        key); //GameDatabase.ServiceSQLConnection.Table<LocalizedData>().Where(x => x.key == key).FirstOrDefault();
 
             if (data != null)
             {
@@ -75,8 +84,9 @@ namespace Omnilatent.LocalizationTool
 
             if (string.IsNullOrEmpty(ret))
             {
-                return key;
+                ret = key;
             }
+
             return ret;
         }
 
@@ -158,28 +168,69 @@ namespace Omnilatent.LocalizationTool
             return language;
         }
 
-        public static TMPro.TMP_Text SetCustomFont(this TMPro.TMP_Text tmp)
+        public static void SetCustomFont(this TMPro.TMP_Text tmp)
         {
             var currentFont = tmp.font;
             var mat = tmp.fontMaterial;
             var adaptiveFont = LT_Setting.GetFontTMPCurrentLanguage();
+            Debug.LogError(adaptiveFont.name);
             if (adaptiveFont != null) tmp.font = adaptiveFont;
             var newMat = LT_Setting.GetCorrespondingMaterial(currentFont, adaptiveFont, mat);
             if (newMat != null)
             {
                 tmp.fontMaterial = newMat;
+                var subMeshesUI = tmp.GetComponentsInChildren<TMPro.TMP_SubMeshUI>();
+                foreach (var item in subMeshesUI)
+                {
+                    item.material = newMat;
+                }
+
+                var subMeshes = tmp.GetComponentsInChildren<TMPro.TMP_SubMesh>();
+                foreach (var item in subMeshes)
+                {
+                    item.material = newMat;
+                }
             }
-            var subMesheUI = tmp.GetComponentsInChildren<TMPro.TMP_SubMeshUI>();
-            foreach (var item in subMesheUI)
+
+            tmp.isRightToLeftText = CurrentLanguage() == SupportedLanguage.arabic && IsArabic(tmp.text);
+            if (IsArabic(tmp.text))
             {
-                item.material = newMat;
+                tmp.text = FixArabicText(tmp.text);
             }
-            var subMeshes = tmp.GetComponentsInChildren<TMPro.TMP_SubMesh>();
-            foreach (var item in subMeshes)
+
+            bool IsArabic(string text)
             {
-                item.material = newMat;
+                foreach (char c in text)
+                {
+                    if ((c >= 0x0600 && c <= 0x06FF) || // Arabic
+                        (c >= 0x0750 && c <= 0x077F) || // Arabic Supplement
+                        (c >= 0x08A0 && c <= 0x08FF) || // Arabic Extended-A
+                        (c >= 0xFB50 && c <= 0xFDFF) || // Arabic Presentation Forms-A
+                        (c >= 0xFE70 && c <= 0xFEFF)) // Arabic Presentation Forms-B
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
-            return tmp;
+
+            string FixArabicText(string text)
+            {
+                var res = "";
+                foreach (var tex in text.Split(' '))
+                {
+                    var t = tex;
+                    if (int.TryParse(tex, out var num))
+                    {
+                        var rev = tex.Reverse();
+                        t = rev.Aggregate("", (current, c) => current + c);
+                    }
+
+                    res += " " + t;
+                }
+                return res;
+            }
         }
     }
 }
