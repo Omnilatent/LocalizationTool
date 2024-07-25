@@ -173,7 +173,6 @@ namespace Omnilatent.LocalizationTool
             var currentFont = tmp.font;
             var mat = tmp.fontMaterial;
             var adaptiveFont = LT_Setting.GetFontTMPCurrentLanguage();
-            Debug.LogError(adaptiveFont.name);
             if (adaptiveFont != null) tmp.font = adaptiveFont;
             var newMat = LT_Setting.GetCorrespondingMaterial(currentFont, adaptiveFont, mat);
             if (newMat != null)
