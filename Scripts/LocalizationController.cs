@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TMPro;
 using UnityEngine;
 
 
@@ -170,9 +171,13 @@ namespace Omnilatent.LocalizationTool
 
         public static void SetCustomFont(this TMPro.TMP_Text tmp)
         {
+            SetCustomFont(tmp, LT_Setting.GetFontTMPCurrentLanguage());
+        }
+
+        public static void SetCustomFont(this TMPro.TMP_Text tmp, TMP_FontAsset adaptiveFont)
+        {
             var currentFont = tmp.font;
             var mat = tmp.fontMaterial;
-            var adaptiveFont = LT_Setting.GetFontTMPCurrentLanguage();
             if (adaptiveFont != null) tmp.font = adaptiveFont;
             var newMat = LT_Setting.GetCorrespondingMaterial(currentFont, adaptiveFont, mat);
             if (newMat != null)

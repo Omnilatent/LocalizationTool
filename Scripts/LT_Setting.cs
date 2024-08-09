@@ -55,7 +55,6 @@ namespace Omnilatent.LocalizationTool
         public static TMP_FontAsset GetFontTMPCurrentLanguage()
         {
             string language = LocalizationController.CurrentLanguage();
-            TMP_FontAsset fontAsset = null;
             // switch (language)
             // {
             //     case SupportedLanguage.vietnamese:
@@ -74,6 +73,12 @@ namespace Omnilatent.LocalizationTool
             //         fontAsset = Instance.japaneseFont;
             //         break;
             // }
+            return GetFontTMPLanguage(language);
+        }
+
+        public static TMP_FontAsset GetFontTMPLanguage(string language)
+        {
+            TMP_FontAsset fontAsset = null;
             var data = Instance.fontDatas.FirstOrDefault(x => x.language == language);
             if (data != null) fontAsset = data.fontAsset;
             return fontAsset;
