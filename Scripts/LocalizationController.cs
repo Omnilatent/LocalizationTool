@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -69,7 +70,7 @@ namespace Omnilatent.LocalizationTool
             else
             {
                 string msg = $"No LocalizedData entry for [{key}] in [{language}].";
-#if UNITY_EDITOR
+                #if UNITY_EDITOR
                 if (data == null && enableAutoAddNotFoundEntry)
                 {
                     var newData = new LocalizeData
@@ -79,7 +80,7 @@ namespace Omnilatent.LocalizationTool
                     SqlDataManager.AddLocalizeData(newData);
                     msg += " Adding new entry to database.";
                 }
-#endif
+                #endif
                 Debug.LogWarning(msg);
             }
 
@@ -196,45 +197,85 @@ namespace Omnilatent.LocalizationTool
                 }
             }
 
-            tmp.isRightToLeftText = CurrentLanguage() == SupportedLanguage.arabic && IsArabic(tmp.text);
-            if (IsArabic(tmp.text))
+            bool isArabic = false;
+            if (CurrentLanguage() == SupportedLanguage.arabic)
             {
-                tmp.text = FixArabicText(tmp.text);
+                isArabic = ArabicUtils.IsArabic(tmp.text);
             }
-
-            bool IsArabic(string text)
+            
+            if (isArabic)
             {
-                foreach (char c in text)
+                tmp.isRightToLeftText = true;
+                tmp.text = ArabicUtils.FixArabicText(tmp.text);
+            }
+            else
+            {
+                tmp.isRightToLeftText = false;
+            }
+        }
+    }
+
+    public class ArabicUtils
+    {
+        // Define a set of characters to check against
+        public static HashSet<char> Delimiters = new HashSet<char> { ' ' };
+
+        public static bool IsArabic(string text)
+        {
+            foreach (char c in text)
+            {
+                if ((c >= 0x0600 && c <= 0x06FF) || // Arabic
+                    (c >= 0x0750 && c <= 0x077F) || // Arabic Supplement
+                    (c >= 0x08A0 && c <= 0x08FF) || // Arabic Extended-A
+                    (c >= 0xFB50 && c <= 0xFDFF) || // Arabic Presentation Forms-A
+                    (c >= 0xFE70 && c <= 0xFEFF)) // Arabic Presentation Forms-B
                 {
-                    if ((c >= 0x0600 && c <= 0x06FF) || // Arabic
-                        (c >= 0x0750 && c <= 0x077F) || // Arabic Supplement
-                        (c >= 0x08A0 && c <= 0x08FF) || // Arabic Extended-A
-                        (c >= 0xFB50 && c <= 0xFDFF) || // Arabic Presentation Forms-A
-                        (c >= 0xFE70 && c <= 0xFEFF)) // Arabic Presentation Forms-B
-                    {
-                        return true;
-                    }
+                    return true;
                 }
-
-                return false;
             }
 
-            string FixArabicText(string text)
+            return false;
+        }
+
+        public static string FixArabicText(string text)
+        {
+            StringBuilder res = new StringBuilder(text.Length);
+            int wordStartIndex = 0;
+
+            for (int i = 0; i <= text.Length; i++)
             {
-                var res = "";
-                foreach (var tex in text.Split(' '))
+                // Check for the end of a word (if the character is in the delimiters set or end of string)
+                if (i == text.Length || Delimiters.Contains(text[i]))
                 {
-                    var t = tex;
-                    if (int.TryParse(tex, out var num))
+                    int wordLength = i - wordStartIndex;
+                    string word = text.Substring(wordStartIndex, wordLength);
+
+                    // Check if the word is a number
+                    if (int.TryParse(word, out _))
                     {
-                        var rev = tex.Reverse();
-                        t = rev.Aggregate("", (current, c) => current + c);
+                        // Reverse the word
+                        for (int j = wordLength - 1; j >= 0; j--)
+                        {
+                            res.Append(word[j]);
+                        }
+                    }
+                    else
+                    {
+                        // Add the word as is
+                        res.Append(word);
                     }
 
-                    res += " " + t;
+                    // Add the current character (space, quote) after the word
+                    if (i < text.Length)
+                    {
+                        res.Append(text[i]);
+                    }
+
+                    wordStartIndex = i + 1;
                 }
-                return res;
             }
+
+            return res.ToString();
         }
     }
 }
