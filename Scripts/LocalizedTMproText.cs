@@ -20,7 +20,13 @@ namespace Omnilatent.LocalizationTool
                 m_Text = GetComponent<TMP_Text>();
             }
             //m_Text.text = (!hasParam) ? Localizes.GetString(id) : string.Format(Localizes.GetString(id), param);
-            m_Text.text = (!hasParam) ? LocalizationController.GetString(id) : string.Format(LocalizationController.GetString(id), param); //Use SQL
+            if (!string.IsNullOrEmpty(id))
+            {
+                m_Text.text = (!hasParam)
+                    ? LocalizationController.GetString(id)
+                    : string.Format(LocalizationController.GetString(id), param); //Use SQL
+            }
+
             m_Text.SetCustomFont();
         }
     }
